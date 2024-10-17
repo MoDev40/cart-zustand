@@ -29,7 +29,7 @@ export default function Product({ product }: { product: Product }) {
   return (
     <Card className="w-full max-w-sm overflow-hidden">
       <CardHeader className="p-0">
-        <div className="relative w-full">
+        <div className="relative w-full py-4">
           <div className="flex items-center justify-center">
             <img
               width={200}
@@ -40,7 +40,7 @@ export default function Product({ product }: { product: Product }) {
             />
           </div>
           {product?.discount > 0 && (
-            <Badge variant="outline" className="absolute top-2 right-2">
+            <Badge className="absolute bg-red-500 top-2 right-2">
               {product?.discount}% OFF
             </Badge>
           )}
@@ -55,7 +55,10 @@ export default function Product({ product }: { product: Product }) {
         </CardDescription>
         <div className="flex items-baseline gap-2 mt-2">
           <span className="text-2xl font-bold">
-            ${product?.discount > 0 ? discountedPrice : product?.price}
+            $
+            {product?.discount > 0
+              ? discountedPrice.toFixed(2)
+              : product?.price}
           </span>
           {product?.discount > 0 && (
             <span className="text-sm line-through text-muted-foreground">
